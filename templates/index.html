@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Program Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #1a1a1a;
+        }
+        .program-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            max-width: 500px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .program-card h3 {
+            margin-top: 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Utilities Portal</h1>
+    <p>Select a tool below to execute locally:</p>
+
+    <div class="program-card">
+        <h3>Z3 Witness Solver</h3>
+        <p>Solves linear matrix constraints (Ax >= b) and determines whether the polytop representing all possible values for x is bounded, or searches for witness configurations (point, ray, line, or general solutions) using the Z3 SMT solver.</p>
+        <a href="/witness" class="btn">Launch Tool</a>
+    </div>
+</body>
+</html>

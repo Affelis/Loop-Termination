@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Z3 Witness Solver</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; line-height: 1.5; }
+        textarea { width: 100%; font-family: monospace; padding: 8px; box-sizing: border-box; }
+        .error { color: red; font-weight: bold; background: #ffe6e6; padding: 10px; border-radius: 4px; }
+        .result-box { background: #f4f4f4; padding: 15px; border-left: 4px solid #007bff; margin-top: 20px; }
+        pre { background: #eef; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; border-radius: 4px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Z3 Witness Solver (Matrix A & Vector b)</h1>
+    <p>Finds witnesses for the given linear constraints using Z3 Py.</p>
+
+    {% if error %}
+        <div class="error">
+            Error: {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        <h3>1. Matrix A (Must have 4 columns per row)</h3>
+        <p><small>Enter each row on a new line. Separate numbers with commas or spaces.</small></p>
+        <textarea name="matrix_A" rows="8" required>{{ default_A }}</textarea>
+
+        <h3>2. Vector b (Must match number of rows in Matrix A)</h3>
+        <p><small>Enter numbers separated by commas or spaces.</small></p>
+        <textarea name="vector_b" rows="3" required>{{ default_b }}</textarea>
+
+        <br><br>
+        <button type="submit">Solve Matrix</button>
+    </form>
+
+    {% if results %}
+        <div class="result-box">
+            <h2>Solver Results</h2>
+
+            {% if not results.not_empty %}
+                <div class="alert alert-danger">
+                    <h3>Polytope is Empty</h3>
+                    <p>The system of constraints is infeasible (no satisfying points exist).</p>
+                </div>
+            {% else %}
+                {% if results.bounded %}
+                    <div class="alert alert-info">
+                        <h3>Polytope is Bounded</h3>
+                        <p>Point witness exists.</p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        <h3>Polytope is Unbounded</h3>
+                        <p>Witness sequences found below:</p>
+                    </div>
+
+                    <h4>Point Check:</h4>
+                    <pre>{{ results.point }}</pre>
+
+                    <h4>Ray Check:</h4>
+                    <pre>{{ results.ray }}</pre>
+
+                    <h4>Line Check:</h4>
+                    <pre>{{ results.line }}</pre>
+
+                    <h4>Half-plane Check:</h4>
+                    <pre>{{ results.half_plane }}</pre>
+
+                    <h4>2D Cone Check:</h4>
+                    <pre>{{ results.cone }}</pre>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+    <br><br>
+    <a href="/">← Back to Home</a>
+</body>
+</html>
