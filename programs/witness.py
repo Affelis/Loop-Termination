@@ -404,7 +404,7 @@ def find_witnesses(A, b):
     s_l = Solver()
     s_l.add(And(witness, s[0] == t[0] * -1, s[1] == t[1] * -1, Not(And(s[0] == 0, s[1] == 0, t[0] == 0, t[1] == 0))))
     s_cone = Solver()
-    s_cone.add(witness, Not(And(s[0] == t[0], s[1] == t[1])), Not(And(s[0] == t[0] * -1, s[1] == t[1] * -1)), Not(And(s[0] == 0, s[1] == 0, t[0] == 0, t[1] == 0)))
+    s_cone.add(witness, Not(And(s[0] == t[0], s[1] == t[1])), Not(And(s[0] == t[0] * -1, s[1] == t[1] * -1)), Not(And(s[0] == 0, s[1] == 0)), Not(And(t[0] == 0, t[1] == 0)))
     s_180 = Solver()
     s_180.add(witness_180)
 
