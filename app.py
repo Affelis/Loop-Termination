@@ -12,8 +12,23 @@ def run_witness():
     results = None
     error = None
     
-    default_A = "1, 0, 0, 0\n0, 1, 0, 0\n-2, -1, 1, 0\n2, 1, -1, 0\n0, -1, 0, 1\n0, 1, 0, -1"
-    default_b = "0, 0, 0, 0, 1, -1"
+    #default_A = "1, 0, 0, 0\n0, 1, 0, 0\n-2, -1, 1, 0\n2, 1, -1, 0\n0, -1, 0, 1\n0, 1, 0, -1"
+    #default_b = "0, 0, 0, 0, 1, -1"
+
+    #point_A = "1, 0, 0, 0\n0, 1, 0, 0\n0, 0, 1, 0\n0, 0, 0, 1"
+    #point_b = "0, 0, 0, 0"
+
+    #ray_A = "1, 0, 0, 0\n0, 1, 0, 0\n0, -1, 0, 1\n0, 1, 0, -1"
+    #ray_b = "0, 0, 1, -1"
+
+    #line_A = ""
+    #line_b = ""
+
+    #half_plane_A = ""
+    #half_plane_b = ""
+
+    default_A = "2, 2, -1, 2\n1, 1, -2, 1\n1, 1, 1, 0\n1, 1, 0, -2"
+    default_b = "-1, 0, 0, 2"
 
     if request.method == 'POST':
         raw_A = request.form.get('matrix_A', '')
